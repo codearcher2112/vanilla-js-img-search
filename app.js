@@ -16,9 +16,12 @@ function formSubmitted(event) {
 
   search(searchTerm)
     .then(displayImages)
-    .then(() => {
+    .then(setTimeout(() => {
       loadingImage.style.display = 'none';
-    });
+      imageSection.style.display = 'block';
+    }, 6000));
+
+  imageSection.style.display = 'none';  
 }
 
 function searchStart() {
@@ -36,10 +39,15 @@ function search(searchTerm) {
 }
 
 function displayImages(images) {
-  images.forEach(image => {
-    // console.log(image.largeImageURL);
-    const imageElement = document.createElement('img');
-    imageElement.src = image.largeImageURL;
-    imageSection.appendChild(imageElement);
-  });
+  if(images.length > 0) {
+    images.forEach(image => {
+      // console.log(image.largeImageURL);
+      const imageElement = document.createElement('img');
+      imageElement.src = image.largeImageURL;
+      imageSection.appendChild(imageElement);
+    });
+  } else {
+    const noResults = `Sorry there is no results!`;
+    setTimeout(() => imageSection.innerHTML= noResults, 6000);
+  }
 }
