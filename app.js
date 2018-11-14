@@ -47,7 +47,7 @@ function displayImages(images) {
       imageSection.appendChild(imageElement);
     });
   } else {
-    const noResults = `Sorry there is no results!`;
+    const noResults = `Sorry there are no results!`;
     setTimeout(() => imageSection.innerHTML= noResults, 6000);
   }
 }
